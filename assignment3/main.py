@@ -248,7 +248,7 @@ class CRFConstituency(nn.Module):
             n = seq_len - offset
             # diag_mask is used for ignoring the excess of each sentence
             # [batch_size, n]
-            diag_mask = mask.diagonal(offset)
+            # diag_mask = mask.diagonal(offset)
             
             s_label = scores.diagonal(offset).logsumexp(0)
 
@@ -257,7 +257,7 @@ class CRFConstituency(nn.Module):
                 continue
             s_span = stripe(s, n, offset-1, (0, 1)) + stripe(s, n, offset-1, (1, offset), 0)
             s_span = s_span.permute(2, 0, 1)
-            s_span = s_span.logsumexp(2)
+            s_span = s_span.logsumexp(-1)
             s.diagonal(offset).copy_(s_span + s_label)
 
         return s
