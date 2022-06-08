@@ -1,6 +1,5 @@
 from graphviz import Digraph
 
-
 class Node(object):
     def __init__(self, tag="", word="", children=None):
         self.tag = tag
@@ -148,11 +147,6 @@ def draw_tree(r: Node, res_path=None):
 
 
 if __name__ == "__main__":
-    with open("./data/ptb_LE10/train.pid") as f:
-        for l in f:
-            l = l.strip("\n")
-            t = from_string(l)
-            if t.sen_len() <= 10:
-                print(l )
-                draw_tree(t, "viz.png")
-                break
+    l = "(TOP (S (NP (DT The) (NN market)) (VP (VBD crumbled)) (. .)))"
+    t = from_string(l)
+    draw_tree(t, "ground-truth")

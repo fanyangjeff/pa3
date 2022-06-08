@@ -622,7 +622,7 @@ if __name__ == "__main__":
     p.add_argument('--eps', default=1e-12, type=float, help='learning rate, eps')
     p.add_argument('--weight-decay', default=1e-5, type=float, help='learning rate, weight decay')
     p.add_argument('--clip', default=5., type=float, help='gradient clipping')
-    p.add_argument('--draw_pred', default=False, type=bool, help='visualize prediction')
+    p.add_argument('--draw_pred', default=True, type=bool, help='visualize prediction')
 
 
     args = p.parse_args()
